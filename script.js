@@ -208,4 +208,23 @@ function showToast(message) {
 
   }, 3000);
 
+
+  // Add to script.js
+document.getElementById("copyWallet").addEventListener("click", async () => {
+  await navigator.clipboard.writeText("abcdedemo");
+
+  const button = document.getElementById("copyWallet");
+  const status = document.getElementById("copyStatus");
+
+  button.textContent = "Copied!";
+  button.classList.add("copied");
+  status.textContent = "Demo wallet copied to clipboard.";
+
+  setTimeout(() => {
+    button.textContent = "Copy demo wallet";
+    button.classList.remove("copied");
+    status.textContent = "";
+  }, 2500);
+});
+
 }
