@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Demo Finance Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- Demo warning -->
+  <div class="demo-banner">
+    DEMO / PROTOTYPE — No real money or financial transactions are processed.
+  </div>
+
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-icon">$</div>
+      <span>DemoPay</span>
+    </div>
+
+    <div class="profile">
+      <div class="avatar">JD</div>
+      <span>John Doe</span>
+      <span class="chevron">⌄</span>
+    </div>
+  </header>
+
+  <main class="dashboard">
+
+    <!-- Cash Balance -->
+    <section class="balance-card">
+      <div class="balance-top">
+        <div>
+          <p class="eyebrow">DEMO ACCOUNT</p>
+          <h1>Cash balance</h1>
+        </div>
+
+        <button class="account-button">
+          Account &amp; routing
+          <span>›</span>
+        </button>
+      </div>
+
+      <div class="balance-amount">$474,542.00</div>
+
+      <div class="balance-actions">
+        <button class="primary-action" onclick="showDemoMessage()">
+          <span>＋</span> Add money
+        </button>
+
+        <button class="primary-action" id="withdrawBtn">
+          Withdraw
+        </button>
+      </div>
+    </section>
+
+
+    <!-- Dashboard grid -->
+    <section class="cards-grid">
+
+      <article class="dashboard-card savings-card">
+        <div class="card-heading">
+          <div>
+            <h2>Savings</h2>
+            <p>Save for your goals</p>
+          </div>
+
+          <div class="green-icon">＄</div>
+        </div>
+
+        <div class="card-value">$0.00</div>
+        <p class="card-subtitle">Up to 4.5% interest</p>
+
+        <div class="progress">
+          <div class="progress-fill"></div>
+        </div>
+      </article>
+
+
+      <article class="dashboard-card bitcoin-card">
+        <div class="card-heading">
+          <div>
+            <h2>Bitcoin</h2>
+            <p>Demo investment</p>
+          </div>
+
+          <span class="arrow">›</span>
+        </div>
+
+        <div class="chart">
+          <svg viewBox="0 0 500 120" preserveAspectRatio="none">
+            <polyline
+              points="0,95 25,90 50,91 75,80 100,76 125,68
+                      150,70 175,65 200,67 225,45 250,50
+                      275,43 300,45 325,43 350,45 375,38
+                      400,41 425,35 450,43 475,28 500,10"
+            />
+          </svg>
+        </div>
+
+        <div class="card-value">$70,329.14</div>
+
+        <p class="green-text">
+          ↑ 4.32% today
+        </p>
+      </article>
+
+
+      <article class="dashboard-card">
+        <div class="card-heading">
+          <div>
+            <h2>Paychecks</h2>
+            <p>Get paid directly</p>
+          </div>
+
+          <div class="green-circle">
+            ↓
+          </div>
+        </div>
+
+        <p class="large-description">
+          Get direct deposits early
+        </p>
+
+        <button class="text-button" onclick="showDemoMessage()">
+          Set up direct deposit →
+        </button>
+      </article>
+
+
+      <article class="dashboard-card">
+        <div class="card-heading">
+          <div>
+            <h2>Stocks</h2>
+            <p>Demo investing</p>
+          </div>
+
+          <div class="purple-icon">
+            ↗
+          </div>
+        </div>
+
+        <p class="large-description">
+          Explore investments
+        </p>
+
+        <p class="card-subtitle">
+          Demo portfolio only
+        </p>
+      </article>
+
+
+      <!-- Full width -->
+      <article class="wide-card purple-wide">
+        <div class="wide-icon">♜</div>
+
+        <div>
+          <h2>Taxes</h2>
+          <p>Explore tax information</p>
+          <span>Demo feature</span>
+        </div>
+
+        <button onclick="showDemoMessage()">›</button>
+      </article>
+
+
+      <article class="wide-card credit-wide">
+        <div class="credit-icon">
+          ◔
+        </div>
+
+        <div class="credit-content">
+          <h2>Credit Score</h2>
+
+          <div class="credit-score">
+            720
+            <span>Good</span>
+          </div>
+
+          <p>Demo score — updated today</p>
+        </div>
+
+        <button onclick="showDemoMessage()">›</button>
+      </article>
+
+
+      <!-- Extra cards for long page -->
+      <article class="dashboard-card">
+        <div class="mini-icon">↕</div>
+        <h2>Transactions</h2>
+        <p class="card-subtitle">Review your demo activity</p>
+
+        <div class="transaction">
+          <span>Demo deposit</span>
+          <strong>+$2,500.00</strong>
+        </div>
+
+        <div class="transaction">
+          <span>Demo purchase</span>
+          <strong>-$120.00</strong>
+        </div>
+
+        <div class="transaction">
+          <span>Demo transfer</span>
+          <strong>-$450.00</strong>
+        </div>
+      </article>
+
+
+      <article class="dashboard-card">
+        <div class="mini-icon purple">★</div>
+        <h2>Rewards</h2>
+        <p class="card-subtitle">
+          Your fictional rewards activity
+        </p>
+
+        <div class="reward-number">
+          12,480
+        </div>
+
+        <button class="text-button" onclick="showDemoMessage()">
+          View rewards →
+        </button>
+      </article>
+
+
+      <article class="wide-card security-wide">
+        <div class="security-icon">✓</div>
+
+        <div>
+          <h2>Security Center</h2>
+          <p>Your prototype account security settings</p>
+        </div>
+
+        <button onclick="showDemoMessage()">›</button>
+      </article>
+
+    </section>
+
+
+    <section class="information-section">
+      <h2>About this prototype</h2>
+
+      <p>
+        This website is a fictional user-interface demonstration.
+        It does not represent a real financial institution and does not
+        process payments, cryptocurrency transactions, bank transfers,
+        Cash App payments, or withdrawals.
+      </p>
+
+      <div class="info-grid">
+        <div>
+          <strong>Demo balance</strong>
+          <span>Fictional</span>
+        </div>
+
+        <div>
+          <strong>Transactions</strong>
+          <span>Fictional</span>
+        </div>
+
+        <div>
+          <strong>Payments</strong>
+          <span>Disabled</span>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+
+  <footer>
+    <p>© 2026 DemoPay Prototype</p>
+    <p>DEMO ONLY — NOT A REAL FINANCIAL ACCOUNT</p>
+  </footer>
+
+
+  <!-- Withdrawal Modal -->
+  <div class="modal-overlay" id="withdrawModal">
+
+    <div class="modal">
+
+      <button class="close-modal" id="closeWithdraw">
+        ×
+      </button>
+
+      <div class="modal-icon green">
+        $
+      </div>
+
+      <h2>Demo withdrawal</h2>
+
+      <p class="modal-description">
+        Enter fictional information to test the withdrawal interface.
+        No money will be transferred.
+      </p>
+
+      <form id="withdrawForm">
+
+        <label for="amount">
+          Withdrawal amount
+        </label>
+
+        <div class="input-wrapper">
+          <span>$</span>
+          <input
+            id="amount"
+            type="number"
+            min="1"
+            step="0.01"
+            placeholder="0.00"
+            required
+          >
+        </div>
+
+
+        <label for="cashTag">
+          Demo Cash App tag
+        </label>
+
+        <input
+          id="cashTag"
+          type="text"
+          placeholder="$demouser"
+          maxlength="30"
+          required
+        >
+
+
+        <button type="submit" class="continue-button">
+          Continue
+        </button>
+
+      </form>
+
+      <p class="small-note">
+        Prototype only. Do not enter real banking or payment information.
+      </p>
+
+    </div>
+
+  </div>
+
+
+  <!-- Confirmation Modal -->
+  <div class="modal-overlay" id="confirmationModal">
+
+    <div class="modal confirmation">
+
+      <button class="close-modal" id="closeConfirmation">
+        ×
+      </button>
+
+      <div class="modal-icon blue">
+        ✓
+      </div>
+
+      <h2>Demo withdrawal</h2>
+
+      <div class="demo-notice">
+
+        <strong>Prototype notice</strong>
+
+        <p>
+          This is a fictional withdrawal demonstration.
+          No real money will be transferred.
+        </p>
+
+        <p>
+          This prototype does not request cryptocurrency payments,
+          deposits, wallet addresses, transaction fees, or payment
+          credentials.
+        </p>
+
+      </div>
+
+      <button
+        class="continue-button"
+        id="finishDemo"
+      >
+        Close demo
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- Simple notification -->
+  <div class="toast" id="toast">
+    Demo feature — no real transaction was performed.
+  </div>
+
+
+  <script src="script.js"></script>
+
+</body>
+</html>
