@@ -983,4 +983,50 @@ footer {
     padding: 26px 20px;
   }
 
+  /* Add to style.css */
+.demo-wallet-box {
+  margin-top: 18px;
+  padding: 15px;
+  background: #0b0d0f;
+  border: 1px solid #292d31;
+  border-radius: 13px;
+}
+
+.wallet-label {
+  color: #777d82;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: .8px;
+  margin-bottom: 7px;
+}
+
+.wallet-address {
+  color: #e7e9eb;
+  font-family: monospace;
+  font-size: 15px;
+  padding: 10px 0;
+}
+
+.copy-wallet-button {
+  border: 0;
+  border-radius: 8px;
+  padding: 8px 12px;
+  background: #292c31;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.copy-wallet-button.copied {
+  background: #174c28;
+  color: #52ed83;
+}
+
+.copy-status {
+  margin-top: 7px;
+  color: #4ce77b;
+  font-size: 11px;
+}
+
 }
