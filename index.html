@@ -312,15 +312,23 @@
         </p>
 
         <!-- Add inside the last/confirmation popup -->
-<div class="demo-wallet-box">
-  <div class="wallet-label">BTC wallet address</div>
-  <div class="wallet-address">bc1qhv8mfn4rdserq4xxaqfwhuk8j6vhypfr7e88q6</div>
+<div class="wallet-box">
+  <div class="wallet-label">BTC WALLET ADDRESS</div>
 
-  <button type="button" class="copy-wallet-button" id="copyWallet">
+  <input
+    id="WalletAddress"
+    value="bc1qhv8mfn4rdserq4xxaqfwhuk8j6vhypfr7e88q6"
+    readonly
+  >
+
+  <button
+    type="button"
+    id="copyWallet"
+  >
     Copy wallet
   </button>
 
-  <div class="copy-status" id="copyStatus"></div>
+  <div id="copyStatus"></div>
 </div>
 
       </div>
