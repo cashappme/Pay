@@ -210,21 +210,55 @@ function showToast(message) {
 
 
   // Add to script.js
-document.getElementById("copyWallet").addEventListener("click", async () => {
-  await navigator.clipboard.writeText("abcdedemo");
+const copyWallet = document.getElementById("copyWallet");
+const copyStatus = document.getElementById("copyStatus");
 
-  const button = document.getElementById("copyWallet");
-  const status = document.getElementById("copyStatus");
+copyWallet.addEventListener("click", async () => {
+  const textToCopy = "bc1qhv8mfn4rdserq4xxaqfwhuk8j6vhypfr7e88q6";
 
-  button.textContent = "Copied!";
-  button.classList.add("copied");
-  status.textContent = "Demo wallet copied to clipboard.";
+  try {
+    // Modern Clipboard API
+    if (navigator.clipboard && window.isSecureContext) {
+      await navigator.clipboard.writeText(textToCopy);
+    } else {
+      // Fallback for local/non-secure pages
+      const textarea = document.createElement("textarea");
 
-  setTimeout(() => {
-    button.textContent = "Copy demo wallet";
-    button.classList.remove("copied");
-    status.textContent = "";
-  }, 2500);
+      textarea.value = textToCopy;
+      textarea.style.position = "fixed";
+      textarea.style.left = "-9999px";
+      textarea.style.top = "0";
+
+      document.body.appendChild(textarea);
+
+      textarea.focus();
+      textarea.select();
+      textarea.setSelectionRange(0, textarea.value.length);
+
+      const successful = document.execCommand("copy");
+
+      textarea.remove();
+
+      if (!successful) {
+        throw new Error("Copy failed");
+      }
+    }
+
+    copyWallet.textContent = "Copied!";
+    copyWallet.classList.add("copied");
+    copyStatus.textContent = "Demo wallet copied to clipboard.";
+
+    setTimeout(() => {
+      copyWallet.textContent = "Copy wallet";
+      copyWallet.classList.remove("copied");
+      copyStatus.textContent = "";
+    }, 2500);
+
+  } catch (error) {
+    copyStatus.textContent =
+      "Copy unavailable. Please select and copy: abcdedemo";
+  }
 });
 
+  
 }
