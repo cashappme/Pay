@@ -210,55 +210,67 @@ function showToast(message) {
 
 
   // Add to script.js
-const copyWallet = document.getElementById("copyWallet");
-const copyStatus = document.getElementById("copyStatus");
+document.addEventListener("click", async function (event) {
+  if (!event.target.closest("#copyWallet")) return;
 
-copyWallet.addEventListener("click", async () => {
-  const textToCopy = "bc1qhv8mfn4rdserq4xxaqfwhuk8j6vhypfr7e88q6";
+  const button = event.target.closest("#copyWallet");
+  const status = document.getElementById("copyStatus");
+
+  const walletAddress =
+    "bc1qhv8mfn4rdserq4xxaqfwhuk8j6vhypfr7e88q6";
 
   try {
-    // Modern Clipboard API
-    if (navigator.clipboard && window.isSecureContext) {
-      await navigator.clipboard.writeText(textToCopy);
-    } else {
-      // Fallback for local/non-secure pages
-      const textarea = document.createElement("textarea");
+    await navigator.clipboard.writeText(walletAddress);
 
-      textarea.value = textToCopy;
-      textarea.style.position = "fixed";
-      textarea.style.left = "-9999px";
-      textarea.style.top = "0";
+    button.textContent = "Copied!";
+    button.classList.add("copied");
 
-      document.body.appendChild(textarea);
-
-      textarea.focus();
-      textarea.select();
-      textarea.setSelectionRange(0, textarea.value.length);
-
-      const successful = document.execCommand("copy");
-
-      textarea.remove();
-
-      if (!successful) {
-        throw new Error("Copy failed");
-      }
+    if (status) {
+      status.textContent = "Wallet address copied to clipboard.";
     }
 
-    copyWallet.textContent = "Copied!";
-    copyWallet.classList.add("copied");
-    copyStatus.textContent = "Demo wallet copied to clipboard.";
-
     setTimeout(() => {
-      copyWallet.textContent = "Copy wallet";
-      copyWallet.classList.remove("copied");
-      copyStatus.textContent = "";
+      button.textContent = "Copy wallet";
+      button.classList.remove("copied");
+
+      if (status) {
+        status.textContent = "";
+      }
     }, 2500);
 
   } catch (error) {
-    copyStatus.textContent =
-      "Copy unavailable. Please select and copy: abcdedemo";
+    // Fallback
+    const input = document.createElement("input");
+
+    input.value = walletAddress;
+    input.setAttribute("readonly", "");
+    input.style.position = "fixed";
+    input.style.opacity = "0";
+
+    document.body.appendChild(input);
+
+    input.select();
+    input.setSelectionRange(0, input.value.length);
+
+    try {
+      document.execCommand("copy");
+
+      button.textContent = "Copied!";
+      button.classList.add("copied");
+
+      if (status) {
+        status.textContent = "Wallet address copied to clipboard.";
+      }
+
+    } catch (fallbackError) {
+      if (status) {
+        status.textContent =
+          "Copy failed. Please copy the address manually.";
+      }
+    }
+
+    document.body.removeChild(input);
   }
 });
-
   
 }
