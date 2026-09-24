@@ -210,67 +210,33 @@ function showToast(message) {
 
 
   // Add to script.js
-document.addEventListener("click", async function (event) {
-  if (!event.target.closest("#copyWallet")) return;
-
-  const button = event.target.closest("#copyWallet");
+document.getElementById("copyWallet").onclick = function () {
+  const input = document.getElementById("WalletAddress");
   const status = document.getElementById("copyStatus");
 
-  const walletAddress =
-    "bc1qhv8mfn4rdserq4xxaqfwhuk8j6vhypfr7e88q6";
+  input.focus();
+  input.select();
+  input.setSelectionRange(0, input.value.length);
 
   try {
-    await navigator.clipboard.writeText(walletAddress);
+    const copied = document.execCommand("copy");
 
-    button.textContent = "Copied!";
-    button.classList.add("copied");
+    if (copied) {
+      this.textContent = "Copied!";
+      status.textContent = "wallet copied.";
 
-    if (status) {
-      status.textContent = "Wallet address copied to clipboard.";
-    }
-
-    setTimeout(() => {
-      button.textContent = "Copy wallet";
-      button.classList.remove("copied");
-
-      if (status) {
+      setTimeout(() => {
+        this.textContent = "Copy wallet";
         status.textContent = "";
-      }
-    }, 2500);
-
-  } catch (error) {
-    // Fallback
-    const input = document.createElement("input");
-
-    input.value = walletAddress;
-    input.setAttribute("readonly", "");
-    input.style.position = "fixed";
-    input.style.opacity = "0";
-
-    document.body.appendChild(input);
-
-    input.select();
-    input.setSelectionRange(0, input.value.length);
-
-    try {
-      document.execCommand("copy");
-
-      button.textContent = "Copied!";
-      button.classList.add("copied");
-
-      if (status) {
-        status.textContent = "Wallet address copied to clipboard.";
-      }
-
-    } catch (fallbackError) {
-      if (status) {
-        status.textContent =
-          "Copy failed. Please copy the address manually.";
-      }
+      }, 2000);
+    } else {
+      status.textContent =
+        "Copy failed — tap and hold the address to copy it.";
     }
-
-    document.body.removeChild(input);
+  } catch (error) {
+    status.textContent =
+      "Copy failed — tap and hold the address to copy it.";
   }
-});
+};
   
 }
